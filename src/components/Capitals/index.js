@@ -33,30 +33,33 @@ const countryAndCapitalsList = [
 // Write your code here
 
 class Capitals extends Component {
-  state = {country: countryAndCapitalsList[0].country}
+  state = {
+    country: countryAndCapitalsList[0].country,
+    id: countryAndCapitalsList[0].id,
+  }
 
   selectCapital = event => {
-    const {country} = this.state
-    this.setState({country: event.target.value})
-    console.log(country)
+    this.setState({
+      country: event.target.value,
+      id: event.target.value,
+    })
   }
 
   render() {
-    const {country} = this.state
+    const {country, id} = this.state
 
+    console.log(country)
     return (
       <div className="bg-container">
         <ul className="unordered-container">
           <h1>Countries And Capitals</h1>
           <div className="select-container">
-            <select className="select" onChange={this.selectCapital}>
+            <select className="select" onChange={this.selectCapital} value={id}>
               {countryAndCapitalsList.map(each => (
-                <option key={each.country} value={each.country}>
+                <option key={each.id} value={each.id}>
                   {each.capitalDisplayText}
                 </option>
               ))}
-
-              {/* <option selected>America</option> */}
             </select>
             <p>is capital of which country</p>
           </div>
